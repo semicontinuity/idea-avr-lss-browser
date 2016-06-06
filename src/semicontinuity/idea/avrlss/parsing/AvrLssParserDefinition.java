@@ -15,6 +15,7 @@ import com.intellij.psi.tree.TokenSet;
 import semicontinuity.idea.avrlss.psi.impl.AvrLssFileImpl;
 import semicontinuity.idea.avrlss.psi.impl.ReferenceImpl;
 import org.jetbrains.annotations.NotNull;
+import semicontinuity.idea.avrlss.psi.impl.instruction.I_eor;
 
 public class AvrLssParserDefinition implements ParserDefinition {
 
@@ -57,6 +58,11 @@ public class AvrLssParserDefinition implements ParserDefinition {
 
     @NotNull
     public PsiElement createElement(final ASTNode node) {
+        if (node.getElementType() == AvrLssElementTypes.INSTRUCTION) {
+            if (node.getFirstChildNode().getText().equals("eor")) {
+                return new I_eor(node);
+            }
+        }
         return new ASTWrapperPsiElement(node);
     }
 }

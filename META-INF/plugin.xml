@@ -27,6 +27,9 @@
     </project-components>
 
     <actions>
+        <action id="VssIntegration.GarbageCollection" class="semicontinuity.idea.avrlss.actions.DumpRegisterUsageReportAction" text="Dump register usage report" description="Dump register usage report">
+        </action>
+
         <!-- Add your actions here -->
     </actions>
 
