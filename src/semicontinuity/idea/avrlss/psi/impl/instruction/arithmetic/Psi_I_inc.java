@@ -10,7 +10,10 @@ public class Psi_I_inc extends Psi_IT_r_mut {
     }
 
     @Override
-    public byte affectedFlags() {
+    public int usedRegisters() { return 1 << register(); }
+
+    @Override
+    public byte clobberedFlags() {
         return FLAG_S | FLAG_V | FLAG_N | FLAG_Z;
     }
 }

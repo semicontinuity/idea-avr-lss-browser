@@ -2,21 +2,32 @@ package semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer;
 
 import com.intellij.lang.ASTNode;
 import org.jetbrains.annotations.NotNull;
-import semicontinuity.idea.avrlss.psi.impl.instruction.PsiInstruction;
-import semicontinuity.idea.avrlss.psi.impl.instruction.Psi_IT_rM_mut;
 import semicontinuity.idea.avrlss.psi.impl.instruction.Psi_I_ptr;
 
+/**
+ * TODO: implement
+ * variants:
+ * SPM
+ * SPM Z+
+ */
 public class Psi_I_spm extends Psi_I_ptr {
     public Psi_I_spm(@NotNull ASTNode astNode) {
         super(astNode);
     }
 
-    public int affectedRegisters() {
-        return super.affectedRegisters() | (1 << register());
+    @Override
+    public int usedRegisters() {
+        //noinspection PointlessBitwiseExpression
+        return super.usedRegisters() | (1 << 0) | (1 << 1);
     }
 
     @Override
-    protected int pointerChild() {
+    public int clobberedRegisters() {
+        return super.clobberedRegisters() | (1 << register());
+    }
+
+    @Override
+    protected int indexOfPsiChildForPointerArgument() {
         return 1;
     }
 

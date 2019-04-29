@@ -31,6 +31,11 @@ public class PsiInstruction extends ASTWrapperPsiElement {
     public static final byte FLAG_I1 = (byte) (1<<7);
     public static final byte FLAG_I0 = (byte) (1<<7);
 
-    public int affectedRegisters() { return 0; }
-    public byte affectedFlags() { return 0; }
+    public int clobberedRegisters() { return 0; }
+
+    public int usedRegisters() { return 0; }
+
+    public byte clobberedFlags() { return 0; }
+
+    public byte usedFlags() { return 0; }
 }

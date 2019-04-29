@@ -8,28 +8,47 @@ public abstract class Psi_I_ptr extends PsiInstruction {
         super(astNode);
     }
 
-    public int affectedRegisters() {
-        int register = register();
+    @Override
+    public int clobberedRegisters() {
+        int register = clobberedPointerRegisterOrMinusOne();
         return register == -1 ? 0 : (1 << register) | (1 << register + 1);
     }
 
-    private int register() {
+    @Override
+    public int usedRegisters() {
+        int register = pointerRegisterOrMinusOne();
+        return register == -1 ? 0 : (1 << register) | (1 << register + 1);
+    }
+
+    private int clobberedPointerRegisterOrMinusOne() {
         PsiElement[] children = getChildren();
-        if (children.length == 0) return 0;
-        String r = children[pointerChild()].getText();
+        if (children.length == 0) return -1;
+        String r = children[indexOfPsiChildForPointerArgument()].getText();
         if (r.contains("+") || r.contains("-")) {
-            if (r.contains("X"))
-                return 26;
-            else if (r.contains("Y"))
-                return 28;
-            else if (r.contains("Z"))
-                return 30;
-            else
-                throw new IllegalStateException(r);
+            return parse(r);
         } else {
             return -1;
         }
     }
 
-    protected abstract int pointerChild();
+    private int pointerRegisterOrMinusOne() {
+        PsiElement[] children = getChildren();
+        if (children.length == 0) return -1;
+        String r = children[indexOfPsiChildForPointerArgument()].getText();
+        return parse(r);
+    }
+
+    private static int parse(String r) {
+        if (r.contains("X"))
+            return 26;
+        else if (r.contains("Y"))
+            return 28;
+        else if (r.contains("Z"))
+            return 30;
+        else
+            throw new IllegalStateException(r);
+    }
+
+
+    protected abstract int indexOfPsiChildForPointerArgument();
 }

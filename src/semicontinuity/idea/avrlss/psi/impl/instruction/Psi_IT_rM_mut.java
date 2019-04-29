@@ -8,5 +8,6 @@ public class Psi_IT_rM_mut extends Psi_IT_rM {
         super(astNode);
     }
 
-    public int affectedRegisters() { return 1 << register(); }
+    @Override
+    public int clobberedRegisters() { return 1 << register(); }
 }

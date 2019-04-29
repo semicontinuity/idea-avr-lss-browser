@@ -9,4 +9,7 @@ public class Psi_I_push extends Psi_IT_r {
     public Psi_I_push(@NotNull ASTNode astNode) {
         super(astNode);
     }
+
+    @Override
+    public int usedRegisters() { return 1 << register(); }
 }

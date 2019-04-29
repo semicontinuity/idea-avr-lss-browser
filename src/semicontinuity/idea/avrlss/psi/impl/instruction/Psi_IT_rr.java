@@ -8,12 +8,11 @@ public class Psi_IT_rr extends PsiInstruction {
         super(astNode);
     }
 
-    public int firstRegister() {
+    protected int firstRegister() {
         return Integer.parseInt(getChildren()[0].getText().substring(1));
     }
 
-    public int secondRegister() {
+    protected int secondRegister() {
         return Integer.parseInt(getChildren()[1].getText().substring(1));
     }
-
 }

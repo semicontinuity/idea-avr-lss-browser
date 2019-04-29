@@ -10,7 +10,7 @@ public class Psi_I_st extends Psi_I_ptr {
     }
 
     @Override
-    protected int pointerChild() {
+    protected int indexOfPsiChildForPointerArgument() {
         return 0;
     }
 }

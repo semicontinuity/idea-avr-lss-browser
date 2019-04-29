@@ -8,5 +8,4 @@ public class Psi_I_ldi extends Psi_IT_rM_mut {
     public Psi_I_ldi(@NotNull ASTNode astNode) {
         super(astNode);
     }
-
 }

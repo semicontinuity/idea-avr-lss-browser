@@ -8,5 +8,4 @@ public class Psi_I_in extends Psi_IT_rM_mut {
     public Psi_I_in(@NotNull ASTNode astNode) {
         super(astNode);
     }
-
 }

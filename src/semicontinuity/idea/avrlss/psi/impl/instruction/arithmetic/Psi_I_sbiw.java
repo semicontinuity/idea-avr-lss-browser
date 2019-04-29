@@ -9,15 +9,18 @@ public class Psi_I_sbiw extends PsiInstruction {
         super(astNode);
     }
 
-    public int affectedRegisters() { return (1 << register()) | (1 << (register() + 1)); }
+    @Override
+    public int usedRegisters() { return (1 << register()) | (1 << (register() + 1)); }
 
-    public int register() {
+    @Override
+    public int clobberedRegisters() { return (1 << register()) | (1 << (register() + 1)); }
+
+    private int register() {
         return Integer.parseInt(getChildren()[0].getText().substring(1));
     }
 
     @Override
-    public byte affectedFlags() {
+    public byte clobberedFlags() {
         return FLAG_S | FLAG_V | FLAG_N | FLAG_Z | FLAG_C;
     }
-
 }

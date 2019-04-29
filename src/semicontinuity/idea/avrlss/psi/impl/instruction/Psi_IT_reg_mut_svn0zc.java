@@ -8,7 +8,7 @@ public class Psi_IT_reg_mut_svn0zc extends Psi_IT_r_mut {
     }
 
     @Override
-    public byte affectedFlags() {
+    public byte clobberedFlags() {
         return FLAG_S | FLAG_V | FLAG_N0 | FLAG_Z | FLAG_C;
     }
 }

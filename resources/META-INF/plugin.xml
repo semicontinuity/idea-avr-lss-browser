@@ -1,0 +1,47 @@
+<idea-plugin version="2">
+  <id>semicontinuity.idea.avrlss</id>
+  <name>AVR-GCC lss file browser</name>
+  <version>1.0</version>
+  <vendor>semicontinuity</vendor>
+
+  <description><![CDATA[Plugin for IntelliJ IDEA for browsing of lss files produced by avr-gcc]]></description>
+
+  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="107.105"/>
+
+  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <component>
+      <implementation-class>semicontinuity.idea.avrlss.AvrLssFilesManager</implementation-class>
+      <skipForDefaultProject/>
+    </component>
+  </project-components>
+
+  <actions>
+    <action id="VssIntegration.GarbageCollection" class="semicontinuity.idea.avrlss.actions.WriteResourcesUsageReportAction" text="Produce AVR CPU resources usage report" description="Produce AVR CPU resources usage report">
+    </action>
+
+    <!-- Add your actions here -->
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileTypeFactory implementation="semicontinuity.idea.avrlss.AvrLssFileTypeFactory"/>
+    <!--<lang.ast.factory language="ObjectLiteral" implementationClass="literator.idea.psi.impl.LiteralASTFactory"/>-->
+    <lang.parserDefinition language="AvrLss"
+                           implementationClass="semicontinuity.idea.avrlss.parsing.AvrLssParserDefinition"/>
+    <colorSettingsPage implementation="semicontinuity.idea.avrlss.AvrLssColorsAndFontsPage"/>
+    <lang.findUsagesProvider language="AvrLss"
+                             implementationClass="semicontinuity.idea.avrlss.findUsages.AvrLssFindUsagesProvider"/>
+    <!--<annotator language="AvrLss" implementationClass="semicontinuity.idea.avrlss.AvrLssAnnotator" order="first"/>-->
+  </extensions>
+
+</idea-plugin>

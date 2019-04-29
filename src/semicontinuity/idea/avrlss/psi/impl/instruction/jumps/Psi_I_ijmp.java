@@ -8,4 +8,9 @@ public class Psi_I_ijmp extends PsiInstruction {
     public Psi_I_ijmp(@NotNull ASTNode astNode) {
         super(astNode);
     }
+
+    @Override
+    public int usedRegisters() {
+        return (1 << 30) | (1 << 31);
+    }
 }

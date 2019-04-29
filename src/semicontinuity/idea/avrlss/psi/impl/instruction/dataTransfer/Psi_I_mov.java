@@ -8,4 +8,9 @@ public class Psi_I_mov extends Psi_IT_rr_mut {
     public Psi_I_mov(@NotNull ASTNode astNode) {
         super(astNode);
     }
+
+    @Override
+    public int usedRegisters() {
+        return 1 << secondRegister();
+    }
 }

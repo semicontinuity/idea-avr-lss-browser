@@ -9,11 +9,10 @@ public class Psi_I_sts extends PsiInstruction {
         super(astNode);
     }
 
-/*
-    public int affectedRegisters() { return 1 << register(); }
+    @Override
+    public int usedRegisters() { return 1 << register(); }
 
     public int register() {
         return Integer.parseInt(getChildren()[1].getText().substring(1));
     }
-*/
 }

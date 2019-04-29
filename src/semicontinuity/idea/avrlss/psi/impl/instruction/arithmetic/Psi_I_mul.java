@@ -9,7 +9,11 @@ public class Psi_I_mul extends PsiInstruction {
         super(astNode);
     }
 
-    public int affectedRegisters() { return (1 << 0) | (1 << 1); }
+    @Override
+    public int clobberedRegisters() { return (1 << 0) | (1 << 1); }
+
+    @Override
+    public int usedRegisters() { return (1 << register1()) | (1 << register2()); }
 
     public int register1() {
         return Integer.parseInt(getChildren()[0].getText().substring(1));
@@ -20,7 +24,7 @@ public class Psi_I_mul extends PsiInstruction {
     }
 
     @Override
-    public byte affectedFlags() {
+    public byte clobberedFlags() {
         return FLAG_Z | FLAG_C;
     }
 

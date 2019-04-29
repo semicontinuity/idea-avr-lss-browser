@@ -125,8 +125,8 @@ public class WriteResourcesUsageReportAction extends AnAction {
                 PsiElement lastChild = line.getLastChild();
                 if (lastChild instanceof PsiInstruction) {
                     PsiInstruction instruction = (PsiInstruction) lastChild;
-                    int ar = instruction.affectedRegisters();
-                    byte af = instruction.affectedFlags();
+                    int ar = instruction.clobberedRegisters();
+                    byte af = instruction.clobberedFlags();
 /*
                     b
                             .append(String.format("%32s", Integer.toBinaryString(ar)).replace(' ', '.').replace('0', '.'))

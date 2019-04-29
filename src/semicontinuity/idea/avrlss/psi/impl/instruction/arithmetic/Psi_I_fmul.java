@@ -9,19 +9,26 @@ public class Psi_I_fmul extends PsiInstruction {
         super(astNode);
     }
 
-    public int affectedRegisters() { return (1 << 0) | (1 << 1); }
+    @Override
+    public int clobberedRegisters() {
+        //noinspection PointlessBitwiseExpression
+        return (1 << 0) | (1 << 1); }
 
-    public int register1() {
+    @Override
+    public int usedRegisters() {
+        return (1 << firstRegister()) | (1 << secondRegister());
+    }
+
+    private int firstRegister() {
         return Integer.parseInt(getChildren()[0].getText().substring(1));
     }
 
-    public int register2() {
+    private int secondRegister() {
         return Integer.parseInt(getChildren()[1].getText().substring(1));
     }
 
     @Override
-    public byte affectedFlags() {
+    public byte clobberedFlags() {
         return FLAG_Z | FLAG_C;
     }
-
 }
