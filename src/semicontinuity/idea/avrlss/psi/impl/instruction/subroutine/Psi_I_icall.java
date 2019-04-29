@@ -10,7 +10,7 @@ public class Psi_I_icall extends PsiInstruction {
     }
 
     @Override
-    public int usedRegisters() {
+    public int readRegisters() {
         return (1 << 30) | (1 << 31);
     }
 }

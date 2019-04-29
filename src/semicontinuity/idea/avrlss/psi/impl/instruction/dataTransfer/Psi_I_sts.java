@@ -10,7 +10,7 @@ public class Psi_I_sts extends PsiInstruction {
     }
 
     @Override
-    public int usedRegisters() { return 1 << register(); }
+    public int readRegisters() { return 1 << register(); }
 
     public int register() {
         return Integer.parseInt(getChildren()[1].getText().substring(1));

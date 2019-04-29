@@ -10,7 +10,7 @@ public class Psi_I_cli extends PsiInstruction {
     }
 
     @Override
-    public byte clobberedFlags() {
+    public byte changedFlags() {
         return FLAG_I0;
     }
 }

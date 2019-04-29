@@ -16,14 +16,14 @@ public class Psi_I_spm extends Psi_I_ptr {
     }
 
     @Override
-    public int usedRegisters() {
+    public int readRegisters() {
         //noinspection PointlessBitwiseExpression
-        return super.usedRegisters() | (1 << 0) | (1 << 1);
+        return super.readRegisters() | (1 << 0) | (1 << 1);
     }
 
     @Override
-    public int clobberedRegisters() {
-        return super.clobberedRegisters() | (1 << register());
+    public int changedRegisters() {
+        return super.changedRegisters() | (1 << register());
     }
 
     @Override

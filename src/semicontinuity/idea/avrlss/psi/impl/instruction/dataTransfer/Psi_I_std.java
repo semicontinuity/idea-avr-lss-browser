@@ -10,8 +10,8 @@ public class Psi_I_std extends Psi_I_ptr {
     }
 
     @Override
-    public int usedRegisters() {
-        return super.usedRegisters() | (1 << register());
+    public int readRegisters() {
+        return super.readRegisters() | (1 << register());
     }
 
     public int register() {

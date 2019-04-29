@@ -31,11 +31,15 @@ public class PsiInstruction extends ASTWrapperPsiElement {
     public static final byte FLAG_I1 = (byte) (1<<7);
     public static final byte FLAG_I0 = (byte) (1<<7);
 
-    public int clobberedRegisters() { return 0; }
+    public final int usedRegisters() { return changedRegisters() | readRegisters(); }
 
-    public int usedRegisters() { return 0; }
+    public final byte usedFlags() { return (byte) (changedFlags() | readFlags()); }
 
-    public byte clobberedFlags() { return 0; }
+    public int changedRegisters() { return 0; }
 
-    public byte usedFlags() { return 0; }
+    public int readRegisters() { return 0; }
+
+    public byte changedFlags() { return 0; }
+
+    public byte readFlags() { return 0; }
 }

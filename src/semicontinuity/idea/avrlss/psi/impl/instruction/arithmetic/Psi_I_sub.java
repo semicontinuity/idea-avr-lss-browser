@@ -10,12 +10,12 @@ public class Psi_I_sub extends Psi_IT_rr_mut {
     }
 
     @Override
-    public int usedRegisters() {
+    public int readRegisters() {
         return (1 << firstRegister()) | (1 << secondRegister());
     }
 
     @Override
-    public byte clobberedFlags() {
+    public byte changedFlags() {
         return FLAG_H | FLAG_S | FLAG_V | FLAG_N | FLAG_Z | FLAG_C;
     }
 }

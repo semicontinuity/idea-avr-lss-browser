@@ -11,5 +11,5 @@ public class Psi_I_push extends Psi_IT_r {
     }
 
     @Override
-    public int usedRegisters() { return 1 << register(); }
+    public int readRegisters() { return 1 << register(); }
 }

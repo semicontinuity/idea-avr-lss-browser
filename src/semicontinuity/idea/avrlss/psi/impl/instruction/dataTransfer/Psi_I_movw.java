@@ -10,8 +10,8 @@ public class Psi_I_movw extends Psi_IT_rr {
     }
 
     @Override
-    public int usedRegisters() { return (1 << secondRegister()) | (1 << (secondRegister() + 1)); }
+    public int readRegisters() { return (1 << secondRegister()) | (1 << (secondRegister() + 1)); }
 
     @Override
-    public int clobberedRegisters() { return (1 << firstRegister()) | (1 << (firstRegister() + 1)); }
+    public int changedRegisters() { return (1 << firstRegister()) | (1 << (firstRegister() + 1)); }
 }

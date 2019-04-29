@@ -10,7 +10,7 @@ public class Psi_I_mov extends Psi_IT_rr_mut {
     }
 
     @Override
-    public int usedRegisters() {
+    public int readRegisters() {
         return 1 << secondRegister();
     }
 }

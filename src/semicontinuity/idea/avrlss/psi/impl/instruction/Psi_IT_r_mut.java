@@ -9,5 +9,5 @@ public class Psi_IT_r_mut extends Psi_IT_r {
     }
 
     @Override
-    public int clobberedRegisters() { return 1 << register(); }
+    public int changedRegisters() { return 1 << register(); }
 }

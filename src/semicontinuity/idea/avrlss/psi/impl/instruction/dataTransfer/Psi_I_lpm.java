@@ -16,15 +16,15 @@ public class Psi_I_lpm extends Psi_I_ptr {
     }
 
     @Override
-    public int usedRegisters() {
-        int usedRegisters = super.usedRegisters();
+    public int readRegisters() {
+        int usedRegisters = super.readRegisters();
         return usedRegisters == 0 ? ((1 << 30) | (1 << 31)) : usedRegisters;
     }
 
     @Override
-    public int clobberedRegisters() {
+    public int changedRegisters() {
         // register is optional, R0 if not specified
-        return super.clobberedRegisters() | (1 << register());
+        return super.changedRegisters() | (1 << register());
     }
 
     @Override

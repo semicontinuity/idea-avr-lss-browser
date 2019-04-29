@@ -10,17 +10,17 @@ public class Psi_I_adiw extends PsiInstruction {
     }
 
     @Override
-    public int clobberedRegisters() { return (1 << register()) | (1 << (register() + 1)); }
+    public int changedRegisters() { return (1 << register()) | (1 << (register() + 1)); }
 
     @Override
-    public int usedRegisters() { return (1 << register()) | (1 << (register() + 1)); }
+    public int readRegisters() { return (1 << register()) | (1 << (register() + 1)); }
 
     private int register() {
         return Integer.parseInt(getChildren()[0].getText().substring(1));
     }
 
     @Override
-    public byte clobberedFlags() {
+    public byte changedFlags() {
         return FLAG_S | FLAG_V | FLAG_N | FLAG_Z | FLAG_C;
     }
 }

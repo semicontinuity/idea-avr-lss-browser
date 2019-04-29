@@ -10,15 +10,15 @@ public class Psi_I_sbci extends Psi_IT_rM_mut {
     }
 
     @Override
-    public int usedRegisters() { return 1 << register(); }
+    public int readRegisters() { return 1 << register(); }
 
     @Override
-    public byte usedFlags() {
+    public byte readFlags() {
         return FLAG_C;
     }
 
     @Override
-    public byte clobberedFlags() {
+    public byte changedFlags() {
         return FLAG_H | FLAG_S | FLAG_V | FLAG_N | FLAG_Z | FLAG_C;
     }
 }

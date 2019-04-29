@@ -10,17 +10,17 @@ public class Psi_I_sbc extends Psi_IT_rr_mut {
     }
 
     @Override
-    public int usedRegisters() {
+    public int readRegisters() {
         return (1 << firstRegister()) | (1 << secondRegister());
     }
 
     @Override
-    public byte usedFlags() {
+    public byte readFlags() {
         return FLAG_C;
     }
 
     @Override
-    public byte clobberedFlags() {
+    public byte changedFlags() {
         return FLAG_H | FLAG_S | FLAG_V | FLAG_N | FLAG_Z | FLAG_C;
     }
 }

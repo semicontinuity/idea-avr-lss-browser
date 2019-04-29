@@ -10,8 +10,8 @@ public class Psi_I_ld extends Psi_I_ptr {
     }
 
     @Override
-    public int clobberedRegisters() {
-        return super.clobberedRegisters() | (1 << register());
+    public int changedRegisters() {
+        return super.changedRegisters() | (1 << register());
     }
 
     @Override

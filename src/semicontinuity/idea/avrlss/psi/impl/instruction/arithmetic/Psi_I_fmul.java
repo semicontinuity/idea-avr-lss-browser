@@ -10,12 +10,12 @@ public class Psi_I_fmul extends PsiInstruction {
     }
 
     @Override
-    public int clobberedRegisters() {
+    public int changedRegisters() {
         //noinspection PointlessBitwiseExpression
         return (1 << 0) | (1 << 1); }
 
     @Override
-    public int usedRegisters() {
+    public int readRegisters() {
         return (1 << firstRegister()) | (1 << secondRegister());
     }
 
@@ -28,7 +28,7 @@ public class Psi_I_fmul extends PsiInstruction {
     }
 
     @Override
-    public byte clobberedFlags() {
+    public byte changedFlags() {
         return FLAG_Z | FLAG_C;
     }
 }

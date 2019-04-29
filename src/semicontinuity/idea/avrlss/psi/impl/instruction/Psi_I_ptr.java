@@ -9,13 +9,13 @@ public abstract class Psi_I_ptr extends PsiInstruction {
     }
 
     @Override
-    public int clobberedRegisters() {
+    public int changedRegisters() {
         int register = clobberedPointerRegisterOrMinusOne();
         return register == -1 ? 0 : (1 << register) | (1 << register + 1);
     }
 
     @Override
-    public int usedRegisters() {
+    public int readRegisters() {
         int register = pointerRegisterOrMinusOne();
         return register == -1 ? 0 : (1 << register) | (1 << register + 1);
     }
