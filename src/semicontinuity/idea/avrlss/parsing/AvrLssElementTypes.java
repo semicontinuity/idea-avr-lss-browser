@@ -16,6 +16,9 @@ public interface AvrLssElementTypes {
     IElementType INSTRUCTION = new AvrLssElementType("INSTRUCTION");
     IElementType TEXT = new AvrLssElementType("TEXT");
 
+    IElementType BLD = new AvrLssElementType("BLD");
+    IElementType BST = new AvrLssElementType("BST");
+
     IElementType CP = new AvrLssElementType("CP");
     IElementType CPC = new AvrLssElementType("CPC");
     IElementType CPI = new AvrLssElementType("CPI");
@@ -82,7 +85,10 @@ public interface AvrLssElementTypes {
 
     IElementType BR = new AvrLssElementType("BR");
     IElementType CP_SKIP = new AvrLssElementType("CP_SKIP");
-    IElementType SKIP_IF_BIT = new AvrLssElementType("SKIP_IF_BIT");
+
+    IElementType CPSE = new AvrLssElementType("CPSE");
+    IElementType SBRS = new AvrLssElementType("SBRS");
+    IElementType SBRC = new AvrLssElementType("SBRC");
 
     IElementType DUMMY = new AvrLssElementType("DUMMY");
     IElementType REG_MUT = new AvrLssElementType("REG_MUT");

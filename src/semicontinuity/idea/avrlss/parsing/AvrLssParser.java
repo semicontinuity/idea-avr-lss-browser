@@ -215,8 +215,15 @@ public class AvrLssParser implements PsiParser {
         switch (op) {
             case "bset":
             case "bclr":
+                throw new UnsupportedOperationException(op);
             case "bst":
+                parse_rM(builder);
+                result = AvrLssElementTypes.BST;
+                break;
             case "bld":
+                parse_rM(builder);
+                result = AvrLssElementTypes.BLD;
+                break;
             case "sec":
             case "clc":
             case "sen":
@@ -301,12 +308,15 @@ public class AvrLssParser implements PsiParser {
                 break;
             case "cpse":
                 parse_rr(builder);
-                result = AvrLssElementTypes.CP_SKIP;
+                result = AvrLssElementTypes.CPSE;
                 break;
             case "sbrc":
+                parse_rM(builder);
+                result = AvrLssElementTypes.SBRC;
+                break;
             case "sbrs":
                 parse_rM(builder);
-                result = AvrLssElementTypes.CP_SKIP;
+                result = AvrLssElementTypes.SBRS;
                 break;
             case "sbic":
             case "sbis":

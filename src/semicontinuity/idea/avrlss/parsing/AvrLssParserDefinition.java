@@ -11,8 +11,8 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
-import semicontinuity.idea.avrlss.psi.impl.AvrLssFileImpl;
 import org.jetbrains.annotations.NotNull;
+import semicontinuity.idea.avrlss.psi.impl.AvrLssFileImpl;
 import semicontinuity.idea.avrlss.psi.impl.instruction.PsiBlock;
 import semicontinuity.idea.avrlss.psi.impl.instruction.PsiBlockAddress;
 import semicontinuity.idea.avrlss.psi.impl.instruction.PsiBlockHeader;
@@ -28,7 +28,6 @@ import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_add;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_adiw;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_and;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_andi;
-import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_call;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_cbr;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_clr;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_com;
@@ -40,11 +39,29 @@ import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_eor;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_fmul;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_fmuls;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_fmulsu;
-import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_icall;
-import semicontinuity.idea.avrlss.psi.impl.instruction.jumps.Psi_I_ijmp;
-import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_in;
 import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_inc;
-import semicontinuity.idea.avrlss.psi.impl.instruction.jumps.Psi_I_jmp;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_mul;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_muls;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_mulsu;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_neg;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_or;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_ori;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sbc;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sbci;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sbiw;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sbr;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_ser;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sub;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_subi;
+import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_tst;
+import semicontinuity.idea.avrlss.psi.impl.instruction.bitManiputation.Psi_I_cli;
+import semicontinuity.idea.avrlss.psi.impl.instruction.bitManiputation.Psi_I_sei;
+import semicontinuity.idea.avrlss.psi.impl.instruction.conditionalJumps.Psi_I_cpse;
+import semicontinuity.idea.avrlss.psi.impl.instruction.conditionalJumps.Psi_I_sbrc;
+import semicontinuity.idea.avrlss.psi.impl.instruction.conditionalJumps.Psi_I_sbrs;
+import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_bld;
+import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_bst;
+import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_in;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_ld;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_ldd;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_ldi;
@@ -52,33 +69,21 @@ import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_lds;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_lpm;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_mov;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_movw;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_mul;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_muls;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_mulsu;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_neg;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_or;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_ori;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_out;
-import semicontinuity.idea.avrlss.psi.impl.instruction.stack.Psi_I_pop;
-import semicontinuity.idea.avrlss.psi.impl.instruction.stack.Psi_I_push;
-import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_rcall;
-import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_ret;
-import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_reti;
-import semicontinuity.idea.avrlss.psi.impl.instruction.jumps.Psi_I_rjmp;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sbc;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sbci;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sbiw;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sbr;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_ser;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_spm;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_st;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_std;
 import semicontinuity.idea.avrlss.psi.impl.instruction.dataTransfer.Psi_I_sts;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_sub;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_subi;
-import semicontinuity.idea.avrlss.psi.impl.instruction.arithmetic.Psi_I_tst;
-import semicontinuity.idea.avrlss.psi.impl.instruction.bitManiputation.Psi_I_cli;
-import semicontinuity.idea.avrlss.psi.impl.instruction.bitManiputation.Psi_I_sei;
+import semicontinuity.idea.avrlss.psi.impl.instruction.jumps.Psi_I_ijmp;
+import semicontinuity.idea.avrlss.psi.impl.instruction.jumps.Psi_I_jmp;
+import semicontinuity.idea.avrlss.psi.impl.instruction.jumps.Psi_I_rjmp;
+import semicontinuity.idea.avrlss.psi.impl.instruction.stack.Psi_I_pop;
+import semicontinuity.idea.avrlss.psi.impl.instruction.stack.Psi_I_push;
+import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_call;
+import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_icall;
+import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_rcall;
+import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_ret;
+import semicontinuity.idea.avrlss.psi.impl.instruction.subroutine.Psi_I_reti;
 
 public class AvrLssParserDefinition implements ParserDefinition {
 
@@ -149,6 +154,10 @@ public class AvrLssParserDefinition implements ParserDefinition {
             return new Psi_I_adc(node);
         else if (node.getElementType() == AvrLssElementTypes.ADIW)
             return new Psi_I_adiw(node);
+        else if (node.getElementType() == AvrLssElementTypes.BST)
+            return new Psi_I_bst(node);
+        else if (node.getElementType() == AvrLssElementTypes.BLD)
+            return new Psi_I_bld(node);
         else if (node.getElementType() == AvrLssElementTypes.SUB)
             return new Psi_I_sub(node);
         else if (node.getElementType() == AvrLssElementTypes.SUBI)
@@ -256,9 +265,13 @@ public class AvrLssParserDefinition implements ParserDefinition {
 
         else if (node.getElementType() == AvrLssElementTypes.BR)
             return new PsiInstruction(node);
+        else if (node.getElementType() == AvrLssElementTypes.CPSE)
+            return new Psi_I_cpse(node);
+        else if (node.getElementType() == AvrLssElementTypes.SBRC)
+            return new Psi_I_sbrc(node);
+        else if (node.getElementType() == AvrLssElementTypes.SBRS)
+            return new Psi_I_sbrs(node);
         else if (node.getElementType() == AvrLssElementTypes.CP_SKIP)
-            return new PsiInstruction(node);
-        else if (node.getElementType() == AvrLssElementTypes.SKIP_IF_BIT)
             return new PsiInstruction(node);
         else if (node.getElementType() == AvrLssElementTypes.DUMMY)
             return new PsiInstruction(node);
